@@ -50,30 +50,30 @@ func main() {
 				fmt.Println("checking:", k)
 				ct.ResetColor()
 			}
-			b, err := exec.Command("go", "list", "-json", name).CombinedOutput()
+			b, err := exec.Command("go", "list", "-json", k).CombinedOutput()
 			if err != nil {
 				fmt.Fprintln(os.Stderr, err)
 				walk[k] = true
 				continue
 			}
-			var deps struct {
-				Deps []string
+			var imports struct {
+				Imports []string
 			}
-			err = json.Unmarshal(b, &deps)
+			err = json.Unmarshal(b, &imports)
 			if err != nil {
 				fmt.Fprintln(os.Stderr, err)
 				walk[k] = true
 				continue
 			}
-			for _, dep := range deps.Deps {
-				if _, ok := walk[dep]; !ok {
-					walk[dep] = false
-					if strings.HasPrefix(dep, "code.google.com/") {
-						code_google_com[dep] = true
+			for _, imp := range imports.Imports {
+				if _, ok := walk[imp]; !ok {
+					walk[imp] = false
+					if strings.HasPrefix(imp, "code.google.com/") {
+						code_google_com[imp] = true
 						found = true
 						if *verbose {
 							ct.ChangeColor(ct.Magenta, false, ct.None, true)
-							fmt.Println("  " + dep)
+							fmt.Println("  " + imp)
 							ct.ResetColor()
 						}
 					}
