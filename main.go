@@ -52,7 +52,14 @@ func main() {
 			}
 			b, err := exec.Command("go", "list", "-json", k).CombinedOutput()
 			if err != nil {
-				fmt.Fprintln(os.Stderr, err)
+				if len(b) > 0 {
+					fmt.Fprintln(os.Stderr, string(b))
+				} else {
+					fmt.Fprintln(os.Stderr, err)
+				}
+				if k == name {
+					os.Exit(1)
+				}
 				walk[k] = true
 				continue
 			}
