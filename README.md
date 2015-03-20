@@ -24,6 +24,10 @@ For example:
 
 ![Good](http://go-gyazo.appspot.com/7f26fede3724d46a.png)
 
+Then, which packages are depend on `code.google.com`? So use `-v`
+
+![-v](http://go-gyazo.appspot.com/70269f8014c1ca78.png)
+
 ## Installation
 
 ```
