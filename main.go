@@ -96,7 +96,7 @@ func main() {
 
 	if found {
 		ct.ChangeColor(ct.White, false, ct.Red, true)
-		fmt.Printf("%s is depend on below's packages on code.google.com:", name)
+		fmt.Printf("%s depends on below's packages on code.google.com:", name)
 		ct.ResetColor()
 		fmt.Println()
 		for k := range code_google_com {
@@ -104,7 +104,7 @@ func main() {
 		}
 	} else {
 		ct.ChangeColor(ct.Black, false, ct.Green, true)
-		fmt.Printf("%s is not depend on packages on code.google.com", name)
+		fmt.Printf("%s is independent of packages on code.google.com", name)
 		ct.ResetColor()
 		fmt.Println()
 	}
